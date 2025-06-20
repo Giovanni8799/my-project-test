@@ -1,0 +1,343 @@
+För att bygga en riktigt bra träningsapp-hemsida behöver jag veta några saker:
+
+🔐 **Användare & Inloggning:**
+- Ska användare kunna registrera sig för appen?
+- Behövs olika medlemskapsnivåer?
+
+💾 **Data & Funktioner:**
+- Vilka huvudfunktioner har appen? (träningsprogram, kostlogg, etc.)
+- Ska användare kunna spara sina träningsresultat?
+
+🎯 **Affärsmål:**
+- Vad är huvudmålet? (nedladdningar, prenumerationer, etc.)
+- Vilken är din målgrupp?
+
+Under tiden skapar jag en professionell landningssida med grundläggande funktioner. Du kan sedan anpassa innehållet efter dina specifika behov.
+
+```html
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitFlow - Din personliga träningspartner</title>
+    <meta name="description" content="Ta kontroll över din träning med FitFlow. Personliga träningsprogram, kostlogg och resultatuppföljning i en app.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --background: #f8fafc;
+            --text: #1e293b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .button-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            background: var(--background);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+            background: var(--background);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">FitFlow</div>
+            <div class="nav-links">
+                <a href="#features">Funktioner</a>
+                <a href="#pricing">Priser</a>
+                <a href="#testimonials">Omdömen</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Din personliga träningspartner</h1>
+            <p>Nå dina träningsmål snabbare med personanpassade program och expertråd</p>
+            <div class="cta-buttons">
+                <a href="#download" class="button button-primary">Ladda ner appen</a>
+                <a href="#learn-more" class="button button-secondary">Läs mer</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Funktioner som hjälper dig lyckas</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-dumbbell feature-icon"></i>
+                    <h3>Personliga träningsprogram</h3>
+                    <p>Skräddarsydda program baserade på dina mål och förutsättningar</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3>Resultatuppföljning</h3>
+                    <p>Följ din utveckling och se dina framsteg över tid</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-utensils feature-icon"></i>
+                    <h3>Kostlogg</h3>
+                    <p>Håll koll på din kost och få personliga rekommendationer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Vad våra användare säger</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"FitFlow har revolutionerat mitt sätt att träna. Jag har nått resultat jag aldrig trodde var möjliga!"</p>
+                    <p class="testimonial-author">- Anna Svensson</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Äntligen en träningsapp som är både enkel att använda och ger riktiga resultat."</p>
+                    <p class="testimonial-author">- Erik Andersson</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll för navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animera feature cards vid scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card').forEach((card) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
+```
+
+Detta är en grundläggande version av landningssidan. För att göra den ännu bättre skulle jag rekommendera att:
+
+1. **Lägga till fler sektioner:**
+   - Prissättning/medlemskapsnivåer
+   - FAQ-sektion
+   - Detaljerad funktionsbeskrivning
+   - Kontaktformulär
+
+2. **Integrera med backend:**
+   - Användarregistrering
+   - Nyhetsbrevsprenumeration
+   - Kontaktformulär som sparar data
+
+3. **Förbättra UX:**
+   - Fler animationer
+   - Bildgalleri med app-screenshots
+   - Video-demonstration
+   - Interaktiva element
+
+Vill du att jag utvecklar någon av dessa delar eller har du specifika önskemål om innehåll och funktioner?
